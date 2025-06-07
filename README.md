@@ -49,6 +49,14 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 ---
 
+## Screenshots
+
+![Login Page](assets/Front.png)
+![Dashboard Page](assets/Dashboard.png)
+
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Clone the repo

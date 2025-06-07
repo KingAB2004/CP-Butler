@@ -1,0 +1,21 @@
+{
+  "name": "CP Butler",
+  "description": "Daily Manager for your Coding Practice",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["contextMenus", "tabs", "storage","activeTab" ,"scripting" ],
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128":"icon.png"
+  },
+    "host_permissions": ["https://leetcode.com/*"],
+    "background":{
+      "service_worker":"background.js"
+    },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png"
+  }
+}

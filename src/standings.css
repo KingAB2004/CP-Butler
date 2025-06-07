@@ -1,0 +1,182 @@
+.standings-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+}
+
+.standings-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.standings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.standings-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.standings-subtitle {
+  color: #666;
+}
+
+.standings-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.nav-button:hover {
+  background: #f5f5f5;
+  text-decoration: none;
+  color: #333;
+}
+
+.standings-table-container {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.standings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.standings-table th {
+  background: #f8f9fa;
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.standings-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.standing-row:hover {
+  background: #f8f9fa;
+}
+
+.contest-name-cell {
+  max-width: 250px;
+  font-weight: 500;
+}
+
+.rank-cell {
+  font-weight: bold;
+  color: #667eea;
+}
+
+.handle-name {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.rating-cell {
+  font-weight: 600;
+}
+
+.problems-cell {
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.score-cell {
+  font-weight: 500;
+  color: #333;
+}
+
+.rating-change {
+  font-weight: bold;
+}
+
+.standings-footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.footer-card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-text {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.footer-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.footer-button:hover {
+  transform: scale(1.02);
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .standings-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .standings-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .standings-table-container {
+    padding: 16px;
+  }
+  
+  .standings-table {
+    font-size: 12px;
+  }
+  
+  .standings-table th,
+  .standings-table td {
+    padding: 8px 4px;
+  }
+  
+  .contest-name-cell {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -79,10 +79,6 @@ npm run build
 
 ---
 
-## 📸 Screenshots
-
----
-
 ## 🛡️ Privacy First
 
 - No account login required  

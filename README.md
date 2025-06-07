@@ -111,6 +111,7 @@ Feel free to contribute by opening issues or submitting pull requests.
 [![GitHub release](https://img.shields.io/github/v/release/KingAB2004/CP-Butler?style=flat-square)](https://github.com/KingAB2004/CP-Butler/releases)
 
 You can find the latest stable versions of this extension on the [Releases page](https://github.com/KingAB2004/CP-Butler/releases).
+
 ---
 ## 📄 License
 

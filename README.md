@@ -1,5 +1,5 @@
 
-# 🤖 CP Butler
+# <img src="https://github.com/KingAB2004/CP-Butler/raw/main/public/icon.png" alt="CP Butler Logo" width="40"/> CP Butler
 
 **CP Butler** is a powerful Chrome Extension built with **TypeScript + React** that helps Competitive Programmers stay on track by visualizing their daily progress across **Codeforces** and **LeetCode**.
 

@@ -108,7 +108,7 @@ This project is licensed under the MIT License.
 ## 📬 Contact
 
 **Author**: [Arpit Bhomia]  
-🔗 GitHub: [github.com/your-username](https://github.com/KingAB2004)
+🔗 GitHub: [github.com/KingAB2004](https://github.com/KingAB2004)
 
 ---
 

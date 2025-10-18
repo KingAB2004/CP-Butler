@@ -57,6 +57,17 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 ---
 
+## 🎥 Demo Video
+
+Watch the full demo of CP Butler in action 👇
+
+![Video](https://youtu.be/QRyYwGxFTAI)
+
+
+---
+
+
+
 ## 🚀 Getting Started
 
 ### 1. Clone the repo

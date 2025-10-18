@@ -57,12 +57,11 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 ---
 
-## 🎥 Demo Video
+🎥 Demo Video
 
 Watch the full demo of CP Butler in action 👇
 
-![Video](https://youtu.be/QRyYwGxFTAI)
-
+📺 YouTube Link: https://youtu.be/QRyYwGxFTAI
 
 ---
 

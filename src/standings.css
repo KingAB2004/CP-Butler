@@ -180,3 +180,7 @@
     white-space: nowrap;
   }
 }
+
+.contest-name-cell a {
+  color: inherit;
+}

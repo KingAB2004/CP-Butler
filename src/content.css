@@ -171,3 +171,29 @@
   text-align: center;
   color: white;
 }
+.streak-section{
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 1rem;
+}
+
+.heatmap{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  margin-top: 12px;
+}
+
+.heat-cell{
+  aspect-ratio: 1;
+  border-radius: 2px;
+}
+
+.heat-cell.level-0{ background: #ebedf0; }
+.heat-cell.level-1{ background: #9be9a8; }
+.heat-cell.level-2{ background: #40c463; }
+.heat-cell.level-3{ background: #30a14e; }
+.heat-cell.level-4{ background: #216e39; }

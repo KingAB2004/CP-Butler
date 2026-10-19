@@ -7,6 +7,7 @@ type props={
 const RecentStandings = ({setPage}:props) => {
     const [Stand ,SetStand] = React.useState<any[]>([])
     const [handle ,setHandle] =React.useState<string>('');
+    const [Status ,setStatus] =React.useState<string>('Loading standings...');
   const getRatingColor = (rating:any) => {
     if (rating < 1200) return '#808080';
     if (rating <= 1399) return '#008000';
@@ -14,7 +15,7 @@ const RecentStandings = ({setPage}:props) => {
     if (rating <= 1899) return '#0000ff';
     if (rating <= 2099) return '#aa00aa';
     if (rating <= 2399) return '#ff8c00';
-    if (rating <= 3000) return '#ff8c00';
+    if (rating <= 3000) return '#ff0000';
     if (rating > 3000) return '#ff0000';
 
   };
@@ -27,6 +28,7 @@ const RecentStandings = ({setPage}:props) => {
     {
         const obje ={
             Name:arr[i].contestName,
+            contestId:arr[i].contestId,
             handle:arr[i].handle,
             rank:arr[i].rank,
             Previous_rating:arr[i].oldRating,
@@ -43,20 +45,27 @@ const RecentStandings = ({setPage}:props) => {
 
   }
   const getStandings =async () =>{
-       chrome.storage.local.get(["CFhandle"] ,async(hande)=>{
+       chrome.storage.local.get(["CFhandle", "standingsCache"] ,async(hande)=>{
             setHandle(hande.CFhandle)
-            const url = `https://codeforces.com/api/user.rating?handle=${hande.CFhandle}`;
+            if (hande.standingsCache?.handle === hande.CFhandle) {
+                SetStand(hande.standingsCache.Stand);
+                setStatus('');
+            }
+            const url = `https://codeforces.com/api/user.rating?handle=${encodeURIComponent(hande.CFhandle)}`;
             try {
                 const response = await fetch(url);
                 const data = await response.json();
                 if (data.status === "OK") {
                      let ku:any[] =rever(data.result);
                      SetStand(ku);
+                     setStatus(ku.length ? '' : 'No rated contests yet');
+                     chrome.storage.local.set({ standingsCache: { handle: hande.CFhandle, Stand: ku } });
                     } else {
                         throw new Error("API Error");
                     }
                 } catch (error) {
                     console.error("Failed to fetch standings:", error);
+                    setStatus('Could not load standings');
                     return null;
                 }
             })
@@ -74,7 +83,7 @@ const RecentStandings = ({setPage}:props) => {
     return change >= 0 ? '#008000' : '#ff0000';
   };
 
-  let url =`https://codeforces.com/contests/with/${handle}`
+  let url =`https://codeforces.com/contests/with/${encodeURIComponent(handle)}`
 
   return (
     <div className="standings-container">
@@ -94,6 +103,7 @@ const RecentStandings = ({setPage}:props) => {
         </div>
 
         <div className="standings-table-container">
+          {Status && <p className="footer-text">{Status}</p>}
           <table className="standings-table">
             <thead>
               <tr>
@@ -107,9 +117,11 @@ const RecentStandings = ({setPage}:props) => {
             </thead>
             <tbody>
               {Stand.map((standing) => (
-                <tr className="standing-row">
+                <tr className="standing-row" key={standing.contestId}>
                   <td className="contest-name-cell">
-                    {standing.Name}
+                    <a href={`https://codeforces.com/contest/${standing.contestId}/standings`} target="_blank" rel="noopener noreferrer">
+                      {standing.Name}
+                    </a>
                   </td>
                   <td className="rank-cell">
                     #{standing.rank}
@@ -128,7 +140,7 @@ const RecentStandings = ({setPage}:props) => {
                     </span>
                   </td>
                   <td className="rating-cell">
-                    <span style={{ color: getRatingColor(standing.New_rating) }}>
+                    <span style={{ color: getRatingColor(standing.Previous_rating) }}>
                       {standing.Previous_rating}
                     </span>
                   </td>

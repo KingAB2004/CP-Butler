@@ -9,8 +9,14 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 ## ✨ Features
 
-- 📅 **Codeforces Contest Calendar**  
-  See a list of all upcoming Codeforces contests right on your dashboard.
+- 📅 **Contest Calendar**  
+  See upcoming Codeforces, LeetCode, CodeChef and AtCoder contests with a live countdown.
+
+- 🔔 **Contest Reminders**  
+  Get a notification before a contest starts. Choose the timing in Settings.
+
+- 🔥 **Streak & Heatmap**  
+  Track your solving streak and daily activity across Codeforces and LeetCode.
 
 - 🧠 **Daily Solved Tracker (CF + LC)**  
   Know how many questions you've solved **today** — combined across both Codeforces and LeetCode.
@@ -62,8 +68,8 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/cp-butler.git
-cd cp-butler
+git clone https://github.com/KingAB2004/CP-Butler.git
+cd CP-Butler
 ```
 
 ### 2. Install dependencies
@@ -83,7 +89,7 @@ npm run build
 - Go to `chrome://extensions`
 - Enable **Developer Mode**
 - Click **Load Unpacked**
-- Select the `/dist` or `/build` folder
+- Select the `dist` folder
 
 ---
 

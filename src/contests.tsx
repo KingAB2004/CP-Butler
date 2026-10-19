@@ -6,16 +6,19 @@ type props={
 const UpcomingContests = ({setPage}:props) => {
 
     const [contest  ,setContest] = React.useState<any[]>([]);
-    const [Fcontest ,setFcontest] =React.useState<any[]>([]);
+    const [failed ,setFailed] =React.useState<string[]>([]);
+    const [Loading ,setLoading] =React.useState(true);
+    const [reminders ,setReminders] =React.useState<Record<string, object>>({});
+    const [now ,setNow] =React.useState(Date.now());
     // const [Lcontest ,setLcontest] =React.useState<any[]>([]);
 
     function formatContestInfo(contest:any) {
-    const startDate = new Date(contest.startTimeSeconds * 1000);
-    const durationInMinutes = contest.durationSeconds / 60;
+    const startDate = new Date(contest.start);
+    const durationInMinutes = contest.duration / 60;
     const hours = Math.floor(durationInMinutes / 60);
     const minutes = durationInMinutes % 60;
 
-    const timeDiffSeconds = contest.startTimeSeconds - Math.floor(Date.now() / 1000);
+    const timeDiffSeconds = Math.floor((contest.start - now) / 1000);
     let timeRemaining;
     if (timeDiffSeconds > 0) {
         const diffHours = Math.floor(timeDiffSeconds / 3600);
@@ -23,37 +26,48 @@ const UpcomingContests = ({setPage}:props) => {
         const diffSeconds = timeDiffSeconds % 60;
         timeRemaining = `${diffHours}h ${diffMinutes}m ${diffSeconds}s`;
     } else {
-        timeRemaining = "Already started or finished";
+        timeRemaining = "Running now";
     }
 
     return {
         Date: startDate.toLocaleString(),
         TR: timeRemaining,
         Name: contest.name,
-        Duration: `${hours}h ${minutes}m`
+        Duration: `${hours}h ${minutes}m`,
+        Platform: contest.platform,
+        Url: contest.url,
+        Started: timeDiffSeconds <= 0,
+        contest
     };
 }
 
     const getContest =async() =>{
-        const response = await fetch("https://codeforces.com/api/contest.list");
-        const data = await response.json();
-    
-        if (data.status === "OK") {
-          const upcomingContests = data.result.filter(
-            (contest:any) => contest.phase === "BEFORE"
-          );
-          setContest(upcomingContests);
-          const func:any[]=[];
-          contest.forEach((contest)=>{
-            const num =formatContestInfo(contest);
-            func.push(num);
-          })
-          // console.log(func)
-          setFcontest(func);
-        }
+        const data = await chrome.runtime.sendMessage({ type: 'getContests' });
+        setContest(data?.contests ?? []);
+        setFailed(data?.failed ?? []);
+        setLoading(false);
     }
-    if(Fcontest.length==0)
-        getContest()
+
+    const toggleReminder =(contest:{id:string}) =>{
+        const next = { ...reminders };
+        if (next[contest.id]) delete next[contest.id];
+        else next[contest.id] = contest;
+        setReminders(next);
+        chrome.storage.local.set({ reminders: next });
+    }
+
+    React.useEffect(() => {
+        getContest();
+        chrome.storage.local.get(['reminders', 'contestCache'], (result) => {
+            setReminders(result.reminders ?? {});
+            if (result.contestCache) {
+                setContest(prev => prev.length ? prev : result.contestCache);
+                setLoading(false);
+            }
+        });
+        const timer = setInterval(() => setNow(Date.now()), 1000);
+        return () => clearInterval(timer);
+    }, []);
 
   return (
     <div className="contests-container">
@@ -64,7 +78,7 @@ const UpcomingContests = ({setPage}:props) => {
               Upcoming Contests
             </h1>
             <p className="contests-subtitle">
-              Stay updated with the latest Codeforces programming contests
+              Codeforces, LeetCode, CodeChef and AtCoder contests
             </p>
           </div>
           <div className="contests-nav">
@@ -74,11 +88,24 @@ const UpcomingContests = ({setPage}:props) => {
         </div>
 
         <div className="contests-list">
-          {Fcontest.map((contest) => (
-            <div className="contest-card">
+          {Loading && <p className="footer-text">Loading contests...</p>}
+          {failed.length > 0 && <p className="footer-text">Could not load {failed.join(', ')} contests</p>}
+          {contest.filter(c => c.start + c.duration * 1000 > now).map(formatContestInfo).map((contest) => (
+            <div className="contest-card" key={contest.contest.id}>
               <div className="contest-header">
-                <span className="contest-name">
+                <a className="contest-name" href={contest.Url} target="_blank" rel="noopener noreferrer">
                   {contest.Name}
+                </a>
+                <span className="contest-countdown">
+                  {contest.Platform}
+                  <button
+                    className="reminder-button"
+                    disabled={contest.Started}
+                    onClick={() => toggleReminder(contest.contest)}
+                    title="Remind me before it starts"
+                  >
+                    {reminders[contest.contest.id] ? '🔔' : '🔕'}
+                  </button>
                 </span>
               </div>
               
@@ -96,6 +123,14 @@ const UpcomingContests = ({setPage}:props) => {
                   <div>
                     <div className="contest-detail-label">Duration</div>
                     <div className="contest-detail-value">{contest.Duration}</div>
+                  </div>
+                </div>
+
+                <div className="contest-detail">
+                  <span>⏳</span>
+                  <div>
+                    <div className="contest-detail-label">Starts In</div>
+                    <div className="contest-detail-value">{contest.TR}</div>
                   </div>
                 </div>
                 

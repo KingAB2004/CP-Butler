@@ -5,15 +5,12 @@ import Settings from "./settings";
 import UpcomingContests from "./contests";
 import RecentStandings from "./standings";
  const App:React.FC=()=>{
-    const [Page ,setPage] = React.useState<string>('front');
+    const [Page ,setPage] = React.useState<string>('');
 
     React.useEffect(()=>{
 
         chrome.storage.local.get(['CFhandle'], (result)=>{
-            if(result.CFhandle)
-            {
-                setPage('content')
-            }
+            setPage(result.CFhandle ? 'content' : 'front')
         });
     },[]);
     return (

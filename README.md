@@ -19,13 +19,19 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
   Track your solving streak and daily activity across Codeforces and LeetCode.
 
 - 🧠 **Daily Solved Tracker (CF + LC)**  
-  Know how many questions you've solved **today** — combined across both Codeforces and LeetCode.
+  Know how many distinct questions you've solved **today** — combined across both Codeforces and LeetCode.
+
+- 🔗 **Clickable Problems**  
+  Open any solved or attempted problem on Codeforces or LeetCode with one click.
+
+- ⚡ **Instant Loading**  
+  Your last loaded data shows instantly when you open the extension, then refreshes in the background.
 
 - 📊 **Codeforces Submission Analysis (Pie Chart)**  
   Visualize your recent Codeforces submissions (AC, WA etc.) with a clean pie chart.
 
 - 🏆 **Recent Codeforces Contest Standing**  
-  Instantly check your latest contest rank, rating change, and performance summary from your recent Codeforces participation.
+  Instantly check your latest contest rank, rating change, and performance summary from your recent Codeforces participation. Click a contest to open its standings.
 
 - ⚛️ **Built using React + TypeScript**  
   Modern architecture for fast UI and scalable code.
@@ -39,6 +45,8 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 - 🟦 TypeScript
 - 📡 Codeforces REST API
 - 📡 LeetCode GraphQL API
+- 📡 CodeChef contests API
+- 🌐 AtCoder contests page
 - 📊 Chart.js (for visual stats)
 
 ---
@@ -47,11 +55,12 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 | Section                     | Description                                           |
 |-----------------------------|-------------------------------------------------------|
-| 🔹 Today's Stats            | Total accepted problems on CF + LC (for today)        |
+| 🔹 Today's Stats            | Distinct problems solved on CF + LC (for today)       |
+| 🔥 Streak & Heatmap         | Current / longest streak and last 20 weeks of activity |
 | 🔸 Submission Pie Chart     | Verdict-wise distribution of Codeforces submissions   |
-| 🟢 CF Contest Calendar      | Shows all upcoming Codeforces rounds                  |
+| 🟢 Contest Calendar         | CF, LC, CodeChef and AtCoder rounds with reminders    |
 | 🟣 Recent CF Contest Result | Rank, rating change, and stats from your latest round |
-| 🧠 LeetCode Tracker         | Recent accepted problems and difficulty levels        |
+| 🧠 LeetCode Tracker         | Problems solved today and their difficulty levels     |
 
 ---
 
@@ -96,8 +105,9 @@ npm run build
 ## 🛡️ Privacy First
 
 - No account login required  
-- Your usernames/handles are stored **locally** in your browser  
-- No data is sent to any third-party server
+- Your usernames/handles and cached stats are stored **locally** in your browser  
+- No data is sent to any third-party server; the extension only reads public data from Codeforces, LeetCode, CodeChef and AtCoder
+- LeetCode only shows your 20 most recent accepted submissions, so your LeetCode streak history builds up from the day you install the extension
 
 ---
 

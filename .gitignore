@@ -22,7 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-dist
-node_modules
+Thumbs.db
 
+# Environment files
+.env
+.env.*
+
+# Build and tool caches
+*.tsbuildinfo
+.eslintcache
+coverage
+
+# Packaged extension and signing key
 *.zip
+*.crx
+*.pem
+
+# Local Claude Code settings
+.claude/settings.local.json

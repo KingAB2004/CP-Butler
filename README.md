@@ -1,5 +1,5 @@
 
-# 🤖 CP Butler
+# <img src="https://github.com/KingAB2004/CP-Butler/raw/main/public/icon.png" alt="CP Butler Logo" width="40"/> CP Butler
 
 **CP Butler** is a powerful Chrome Extension built with **TypeScript + React** that helps Competitive Programmers stay on track by visualizing their daily progress across **Codeforces** and **LeetCode**.
 
@@ -72,6 +72,16 @@ Whether you're aiming to maintain a streak, monitor your submissions, or prepare
 
 ---
 
+🎥 Demo Video
+
+Watch the full demo of CP Butler in action 👇
+
+📺 YouTube Link: https://youtu.be/QRyYwGxFTAI
+
+---
+
+
+
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
@@ -122,7 +132,13 @@ Feel free to contribute by opening issues or submitting pull requests.
 4. Push and open a PR 🚀
 
 ---
+## 📦 Releases
 
+[![GitHub release](https://img.shields.io/github/v/release/KingAB2004/CP-Butler?style=flat-square)](https://github.com/KingAB2004/CP-Butler/releases)
+
+You can find the latest stable versions of this extension on the [Releases page](https://github.com/KingAB2004/CP-Butler/releases).
+
+---
 ## 📄 License
 
 This project is licensed under the MIT License.
